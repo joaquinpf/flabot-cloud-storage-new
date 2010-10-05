@@ -1,0 +1,26 @@
+s3service.accesskey=
+s3service.secretkey=
+s3service.bucket=
+s3service.path=
+s3service.filename=
+
+#Dropbox static
+dropbox.server=api.dropbox.com
+dropbox.content_server=api-content.dropbox.com/0/files/dropbox
+dropbox.port=80
+dropbox.request_token_url=http//api.dropbox.com/0/token
+dropbox.access_token_url=http//api.dropbox.com/0/auth/access_token
+dropbox.authorization_url=http://api.dropbox.com/0/oauth/authorize
+dropbox.copy_url=http://api.dropbox.com/0/fileops/copy
+dropbox.create_folder_url=http://api.dropbox.com/0/fileops/create_folder
+dropbox.delete_url=http://api.dropbox.com/0/fileops/delete
+dropbox.move_url=http://api.dropbox.com/0/fileops/move
+
+#Dropbox access
+dropbox.consumer_key=
+dropbox.consumer_secret=
+dropbox.username=
+dropbox.password=
+
+test.path=c://
+test.filename=cached.txt
