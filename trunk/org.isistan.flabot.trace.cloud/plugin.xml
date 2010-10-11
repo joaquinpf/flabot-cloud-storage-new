@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension 
+         id="org.isistan.flabot.trace.cloud.logPersisterProviders"
+         name="Flabot Trace Cloud Log Persister Providers"
+         point="org.isistan.flabot.launcher.logPersisterProvider">
+      <provider
+            class="org.isistan.flabot.trace.cloud.launcher.CloudLogPersisterProvider"
+            id="org.isistan.flabot.trace.cloud.cloudLogPersisterProvider"
+            name="XML Cloud Log Persister Provider (.tracelog)"
+            tabClass="org.isistan.flabot.trace.cloud.launcher.CloudLogPersisterProviderConfigurationTab"/>
+   </extension>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http:///org/isistan/flabot/trace/cloud/config.ecore" 
+       class = "org.isistan.flabot.trace.cloud.config.ConfigPackage"
+       genModel = "src/org/isistan/flabot/trace/cloud/tracefile.genmodel" /> 
+  </extension>
+
+</plugin>
