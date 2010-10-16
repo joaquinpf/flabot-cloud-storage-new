@@ -13,7 +13,7 @@ import org.isistan.flabot.trace.config.LogPersister;
  * @model
  */
 public interface CloudLogPersister extends LogPersister {
-w
+
 	/**
 	 * Get the output file's name
 	 * 
