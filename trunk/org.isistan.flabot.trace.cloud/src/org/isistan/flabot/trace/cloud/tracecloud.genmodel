@@ -9,6 +9,11 @@
     <genClasses ecoreClass="config.ecore#//CloudLogPersister">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.ecore#//CloudLogPersister/fileName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.ecore#//CloudLogPersister/service"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.ecore#//CloudLogPersister/path"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.ecore#//CloudLogPersister/password"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.ecore#//CloudLogPersister/username"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.ecore#//CloudLogPersister/key"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.ecore#//CloudLogPersister/secret"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
