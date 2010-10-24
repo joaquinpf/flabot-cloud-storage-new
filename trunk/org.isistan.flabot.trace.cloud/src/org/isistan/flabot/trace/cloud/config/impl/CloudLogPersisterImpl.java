@@ -8,25 +8,35 @@ package org.isistan.flabot.trace.cloud.config.impl;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.isistan.flabot.trace.cloud.TraceCloudPlugin;
 import org.isistan.flabot.trace.cloud.config.CloudLogPersister;
 import org.isistan.flabot.trace.cloud.config.ConfigPackage;
+import org.isistan.flabot.trace.cloud.launcher.LaunchConfigurationConstants;
+import org.isistan.flabot.trace.cloud.launcher.cloudProvider.CloudProvider;
+import org.isistan.flabot.trace.cloud.launcher.cloudProvider.CloudProviderLoader;
 import org.isistan.flabot.trace.cloud.log.CloudTraceLogFactory;
 import org.isistan.flabot.trace.config.impl.LogPersisterImpl;
 import org.isistan.flabot.trace.log.LogPackage;
 import org.isistan.flabot.trace.log.TraceLog;
 import org.isistan.flabot.trace.log.TraceLogFactory;
+import org.isistan.flabot.util.extension.NoMatchingConstructorFoundException;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -531,7 +541,7 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 	private Resource getResource(boolean cleared) {
 		if (resource == null) {
 
-			downloadFileFromCloud();
+			cloudProvider.load(getKey(), getSecret(), getFileName(), getPath(), LOCAL_FILE_NAME);
 			
 			if (cleared) {
 				URI uri = URI.createFileURI(LOCAL_FILE_NAME);
@@ -557,84 +567,6 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 		return resource;
 	}
 
-	private void downloadFileFromCloud() {
-		try{
-			AmazonAuthenticationData authData = new AmazonAuthenticationData();
-			authData.setAccessKey(getKey());
-			authData.setSecretKey(getSecret());
-			StorageServiceData storageData = new StorageServiceData();
-			storageData.setFileName(getFileName());
-			int barra = getPath().indexOf("/");
-			storageData.setHost(getPath().substring(0, barra - 1));
-			storageData.setPath(getPath().substring(barra));
-			storageData.setAuthData(authData);
-			StorageService service = StorageServiceFactory.instance.getStorageService(getService());
-			Authenticator authenticator = StorageServiceFactory.instance.getAuthenticator(AuthenticationConstants.AMAZON_AUTHENTICATION);
-			service.connect(storageData, authenticator);
-			service.download(LOCAL_FILE_NAME, storageData);
-			service.disconnect();		
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-		
-		/*		
-		DropboxAuthenticationData authData = new DropboxAuthenticationData();
-		StorageServiceData storageData = new StorageServiceData();
-		storageData.setFileName(getFileName());
-		int barra = getPath().indexOf("/");
-		storageData.setHost(getPath().substring(0, barra - 1));
-		storageData.setPath(getPath().substring(barra));
-		storageData.setAuthData(authData);
-		StorageService service = StorageServiceFactory.instance.getStorageService(getService());
-		Authenticator authenticator = StorageServiceFactory.instance.getAuthenticator(AuthenticationConstants.AMAZON_AUTHENTICATION);
-		service.connect(storageData, authenticator);
-		service.download(LOCAL_FILE_NAME, storageData);
-		service.disconnect();
-		
-		readFileToTextArea("cached.txt");    		
-		new File("cached.txt").delete();    	
-		*/		
-	}
-
-	private void uploadFileToCloud() {
-		try{
-			AmazonAuthenticationData authData = new AmazonAuthenticationData();
-			authData.setAccessKey(getKey());
-			authData.setSecretKey(getSecret());
-			StorageServiceData storageData = new StorageServiceData();
-			storageData.setFileName(getFileName());
-			int barra = getPath().indexOf("/");
-			storageData.setHost(getPath().substring(0, barra - 1));
-			storageData.setPath(getPath().substring(barra));
-			storageData.setAuthData(authData);
-			StorageService service = StorageServiceFactory.instance.getStorageService(getService());
-			Authenticator authenticator = StorageServiceFactory.instance.getAuthenticator(AuthenticationConstants.AMAZON_AUTHENTICATION);
-			service.connect(storageData, authenticator);
-			service.upload(LOCAL_FILE_NAME, storageData);
-			service.disconnect();		
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-		
-		/*		
-		DropboxAuthenticationData authData = new DropboxAuthenticationData();
-		StorageServiceData storageData = new StorageServiceData();
-		storageData.setFileName(getFileName());
-		int barra = getPath().indexOf("/");
-		storageData.setHost(getPath().substring(0, barra - 1));
-		storageData.setPath(getPath().substring(barra));
-		storageData.setAuthData(authData);
-		StorageService service = StorageServiceFactory.instance.getStorageService(getService());
-		Authenticator authenticator = StorageServiceFactory.instance.getAuthenticator(AuthenticationConstants.AMAZON_AUTHENTICATION);
-		service.connect(storageData, authenticator);
-		service.download(LOCAL_FILE_NAME, storageData);
-		service.disconnect();
-		
-		readFileToTextArea("cached.txt");    		
-		new File("cached.txt").delete();    	
-		*/		
-	}
-	
 	public void save() {
 		if (resource == null) {
 			return;
@@ -642,7 +574,7 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 		try {
 			resource.save(Collections.EMPTY_MAP);
 
-			uploadFileToCloud();
+			cloudProvider.save(getKey(), getSecret(), getFileName(), getPath(), LOCAL_FILE_NAME);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -692,4 +624,62 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 		}
 	}
 
-} // FileLogPersisterImpl
+
+	private CloudProvider cloudProvider = null;
+	
+	public CloudProvider getCloudProvider() throws CoreException {
+		if(cloudProvider == null) {
+			this.setCloudProvider(this.getCloudProvider(this.getService()));
+		}
+		return cloudProvider;
+	}
+
+	public void setCloudProvider(CloudProvider cloudProvider) {
+		this.cloudProvider = cloudProvider;
+	}
+	
+	/**
+	 * Loads the configured CloudProvider
+	 * 
+	 * @param cloudProviderId
+	 * @return
+	 * @throws CoreException
+	 */
+	public CloudProvider getCloudProvider(String cloudProviderId)
+			throws CoreException {
+
+		if (cloudProviderId.trim().length() == 0) {
+			throw new CoreException(new Status(IStatus.ERROR,
+					TraceCloudPlugin.SYMBOLIC_NAME, IStatus.ERROR,
+					"Cloud provider not selected.", null));
+		}
+		try {
+			return CloudProviderLoader.loadCloudProvider(cloudProviderId);
+		} catch (ClassNotFoundException e) {
+			throw new CoreException(new Status(IStatus.ERROR,
+					TraceCloudPlugin.SYMBOLIC_NAME, IStatus.ERROR,
+					"Cloud provider class not found.", e));
+		} catch (IllegalArgumentException e) {
+			throw new CoreException(new Status(IStatus.ERROR,
+					TraceCloudPlugin.SYMBOLIC_NAME, IStatus.ERROR,
+					"Invalid arguments on cloud provider.", e));
+		} catch (NoMatchingConstructorFoundException e) {
+			throw new CoreException(new Status(IStatus.ERROR,
+					TraceCloudPlugin.SYMBOLIC_NAME, IStatus.ERROR,
+					"No default constructor found in cloud provider.", e));
+		} catch (InstantiationException e) {
+			throw new CoreException(new Status(IStatus.ERROR,
+					TraceCloudPlugin.SYMBOLIC_NAME, IStatus.ERROR,
+					"Error instantiating cloud provider class.", e));
+		} catch (IllegalAccessException e) {
+			throw new CoreException(new Status(IStatus.ERROR,
+					TraceCloudPlugin.SYMBOLIC_NAME, IStatus.ERROR,
+					"Error accessing cloud provider constuctors.", e));
+		} catch (InvocationTargetException e) {
+			throw new CoreException(new Status(IStatus.ERROR,
+					TraceCloudPlugin.SYMBOLIC_NAME, IStatus.ERROR,
+					"Error creating cloud provider instance.", e));
+		}
+	}
+
+} 

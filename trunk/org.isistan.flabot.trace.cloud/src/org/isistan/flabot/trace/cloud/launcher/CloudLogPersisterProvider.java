@@ -4,6 +4,8 @@
  */
 package org.isistan.flabot.trace.cloud.launcher;
 
+import java.lang.reflect.InvocationTargetException;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -11,9 +13,13 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.isistan.flabot.launcher.LauncherPlugin;
 import org.isistan.flabot.launcher.persister.LogPersisterProvider;
 import org.isistan.flabot.launcher.persister.LogPersisterProviderException;
+import org.isistan.flabot.trace.cloud.TraceCloudPlugin;
 import org.isistan.flabot.trace.cloud.config.CloudLogPersister;
 import org.isistan.flabot.trace.cloud.config.ConfigFactory;
+import org.isistan.flabot.trace.cloud.launcher.cloudProvider.CloudProvider;
+import org.isistan.flabot.trace.cloud.launcher.cloudProvider.CloudProviderLoader;
 import org.isistan.flabot.trace.config.LogPersister;
+import org.isistan.flabot.util.extension.NoMatchingConstructorFoundException;
 
 /**
  * EMF log persister provider.
@@ -93,5 +99,5 @@ public class CloudLogPersisterProvider implements LogPersisterProvider {
 
 		return cloudLogPersister;
 	}
-
+	
 }
