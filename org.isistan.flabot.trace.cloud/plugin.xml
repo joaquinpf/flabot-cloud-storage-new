@@ -9,6 +9,7 @@
 -->
 
 <plugin>
+   <extension-point id="cloudProvider" name="Flabot Trace Cloud Provider" schema="schema/cloudProvider.exsd"/>
 
    <extension 
          id="org.isistan.flabot.trace.cloud.logPersisterProviders"
@@ -26,6 +27,22 @@
        uri = "http:///org/isistan/flabot/trace/cloud/config.ecore" 
        class = "org.isistan.flabot.trace.cloud.old.config.ConfigPackage"
        genModel = "src/org/isistan/flabot/trace/cloud/tracefile.genmodel" /> 
+  </extension>
+  <extension
+        point="org.isistan.flabot.trace.cloud.cloudProvider">
+     <provider
+           class="org.isistan.flabot.trace.cloud.launcher.cloudProvider.S3CloudProvider"
+           id="S3CloudProvider"
+           name="Flabot S3 Cloud Provider">
+     </provider>
+  </extension>
+  <extension
+        point="org.isistan.flabot.trace.cloud.cloudProvider">
+     <provider
+           class="org.isistan.flabot.trace.cloud.launcher.cloudProvider.DropboxCloudProvider"
+           id="DropboxCloudProvider"
+           name="Flabot Dropbox Cloud Provider">
+     </provider>
   </extension>
 
 </plugin>
