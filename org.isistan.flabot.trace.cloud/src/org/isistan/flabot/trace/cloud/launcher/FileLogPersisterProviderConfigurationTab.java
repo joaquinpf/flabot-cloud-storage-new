@@ -176,12 +176,12 @@ public class FileLogPersisterProviderConfigurationTab extends AbstractConfigurat
 			throws CoreException {
 		
 		String outputFile=config.getAttribute(
-				LaunchConfigurationConstants.OUTPUT_FILE, "");
+				LaunchConfigurationConstants.FILENAME, "");
 		outputFileText.setText(outputFile);
 	}
 	
 	public void setDefaults(ILaunchConfigurationWorkingCopy config) {
-		config.setAttribute(LaunchConfigurationConstants.OUTPUT_FILE, ""); //$NON-NLS-1$
+		config.setAttribute(LaunchConfigurationConstants.FILENAME, ""); //$NON-NLS-1$
 	}
 	
 	/**
@@ -208,7 +208,7 @@ public class FileLogPersisterProviderConfigurationTab extends AbstractConfigurat
 	 */
 	protected void saveOutputFileDataSection(ILaunchConfigurationWorkingCopy config)
 			throws CoreException {
-		config.setAttribute(LaunchConfigurationConstants.OUTPUT_FILE,
+		config.setAttribute(LaunchConfigurationConstants.FILENAME,
 				outputFileText.getText());
 	}
 

@@ -10,9 +10,9 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.isistan.flabot.trace.cloud,
  org.isistan.flabot.trace.cloud.launcher,
  org.isistan.flabot.trace.cloud.log,
- org.isistan.flabot.trace.cloud.old.config,
- org.isistan.flabot.trace.cloud.old.config.impl,
- org.isistan.flabot.trace.cloud.old.config.util
+ org.isistan.flabot.trace.cloud.config,
+ org.isistan.flabot.trace.cloud.config.impl,
+ org.isistan.flabot.trace.cloud.config.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.isistan.flabot.trace,

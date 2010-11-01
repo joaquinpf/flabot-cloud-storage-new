@@ -1,0 +1,53 @@
+<class-diagram version="0.9.86" automaticImage="PNG" icons="true" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
+  <interface corner="BOTTOM_RIGHT" language="java" name="org.isistan.flabot.trace.cloud.config.CloudLogPersister" 
+    project="org.isistan.flabot.trace.cloud" 
+    file="/org.isistan.flabot.trace.cloud/src/org/isistan/flabot/trace/cloud/config/CloudLogPersister.java" 
+    binary="false">    
+    <position x="147" y="425" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </interface>  
+  <interface corner="BOTTOM_RIGHT" language="java" name="org.isistan.flabot.trace.config.LogPersister" 
+    project="org.isistan.flabot.trace" 
+    file="/org.isistan.flabot.trace/src/org/isistan/flabot/trace/config/LogPersister.java" binary="false">    
+    <position x="148" y="105" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </interface>  
+  <class corner="BOTTOM_RIGHT" language="java" name="org.isistan.flabot.trace.cloud.config.impl.CloudLogPersisterImpl" 
+    project="org.isistan.flabot.trace.cloud" 
+    file="/org.isistan.flabot.trace.cloud/src/org/isistan/flabot/trace/cloud/config/impl/CloudLogPersisterImpl.java" 
+    binary="false">    
+    <position x="456" y="425" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <realization>    
+    <source project="org.isistan.flabot.trace.cloud" 
+      name="org.isistan.flabot.trace.cloud.config.impl.CloudLogPersisterImpl" 
+      file="/org.isistan.flabot.trace.cloud/src/org/isistan/flabot/trace/cloud/config/impl/CloudLogPersisterImpl.java" 
+      binary="false"/>    
+    <target project="org.isistan.flabot.trace.cloud" name="org.isistan.flabot.trace.cloud.config.CloudLogPersister" 
+      file="/org.isistan.flabot.trace.cloud/src/org/isistan/flabot/trace/cloud/config/CloudLogPersister.java" 
+      binary="false"/>  
+  </realization>  
+  <generalization>    
+    <source project="org.isistan.flabot.trace.cloud" name="org.isistan.flabot.trace.cloud.config.CloudLogPersister" 
+      file="/org.isistan.flabot.trace.cloud/src/org/isistan/flabot/trace/cloud/config/CloudLogPersister.java" 
+      binary="false"/>    
+    <target project="org.isistan.flabot.trace" name="org.isistan.flabot.trace.config.LogPersister" 
+      file="/org.isistan.flabot.trace/src/org/isistan/flabot/trace/config/LogPersister.java" binary="false"/>  
+  </generalization>  
+  <classifier-display autosize="true" package="true" initial-value="false" signature="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

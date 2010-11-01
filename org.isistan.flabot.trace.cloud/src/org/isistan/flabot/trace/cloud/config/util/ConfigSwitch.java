@@ -6,8 +6,6 @@
  */
 package org.isistan.flabot.trace.cloud.config.util;
 
-import config.*;
-
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;

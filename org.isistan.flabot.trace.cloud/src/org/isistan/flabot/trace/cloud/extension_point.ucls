@@ -1,0 +1,60 @@
+<class-diagram version="0.9.86" automaticImage="PNG" icons="true" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
+  <class corner="BOTTOM_RIGHT" language="java" 
+    name="org.isistan.flabot.trace.cloud.launcher.cloudProvider.DropboxCloudProvider" 
+    project="org.isistan.flabot.trace.cloud" 
+    file="/org.isistan.flabot.trace.cloud/src/org/isistan/flabot/trace/cloud/launcher/cloudProvider/DropboxCloudProvider.java" 
+    binary="false">    
+    <position x="133" y="245" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" 
+    name="org.isistan.flabot.trace.cloud.launcher.cloudProvider.S3CloudProvider" 
+    project="org.isistan.flabot.trace.cloud" 
+    file="/org.isistan.flabot.trace.cloud/src/org/isistan/flabot/trace/cloud/launcher/cloudProvider/S3CloudProvider.java" 
+    binary="false">    
+    <position x="406" y="245" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <interface corner="BOTTOM_RIGHT" language="java" 
+    name="org.isistan.flabot.trace.cloud.launcher.cloudProvider.CloudProvider" project="org.isistan.flabot.trace.cloud" 
+    file="/org.isistan.flabot.trace.cloud/src/org/isistan/flabot/trace/cloud/launcher/cloudProvider/CloudProvider.java" 
+    binary="false">    
+    <position x="270" y="57" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </interface>  
+  <realization>    
+    <source project="org.isistan.flabot.trace.cloud" 
+      name="org.isistan.flabot.trace.cloud.launcher.cloudProvider.DropboxCloudProvider" 
+      file="/org.isistan.flabot.trace.cloud/src/org/isistan/flabot/trace/cloud/launcher/cloudProvider/DropboxCloudProvider.java" 
+      binary="false"/>    
+    <target project="org.isistan.flabot.trace.cloud" 
+      name="org.isistan.flabot.trace.cloud.launcher.cloudProvider.CloudProvider" 
+      file="/org.isistan.flabot.trace.cloud/src/org/isistan/flabot/trace/cloud/launcher/cloudProvider/CloudProvider.java" 
+      binary="false"/>  
+  </realization>  
+  <realization>    
+    <source project="org.isistan.flabot.trace.cloud" 
+      name="org.isistan.flabot.trace.cloud.launcher.cloudProvider.S3CloudProvider" 
+      file="/org.isistan.flabot.trace.cloud/src/org/isistan/flabot/trace/cloud/launcher/cloudProvider/S3CloudProvider.java" 
+      binary="false"/>    
+    <target project="org.isistan.flabot.trace.cloud" 
+      name="org.isistan.flabot.trace.cloud.launcher.cloudProvider.CloudProvider" 
+      file="/org.isistan.flabot.trace.cloud/src/org/isistan/flabot/trace/cloud/launcher/cloudProvider/CloudProvider.java" 
+      binary="false"/>  
+  </realization>  
+  <classifier-display autosize="true" package="true" initial-value="false" signature="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
