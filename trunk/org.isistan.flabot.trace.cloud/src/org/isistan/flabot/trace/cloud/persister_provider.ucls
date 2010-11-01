@@ -1,0 +1,37 @@
+<class-diagram version="0.9.86" automaticImage="PNG" icons="true" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
+  <class corner="BOTTOM_RIGHT" language="java" name="org.isistan.flabot.trace.cloud.launcher.CloudLogPersisterProvider" 
+    project="org.isistan.flabot.trace.cloud" 
+    file="/org.isistan.flabot.trace.cloud/src/org/isistan/flabot/trace/cloud/launcher/CloudLogPersisterProvider.java" 
+    binary="false">    
+    <position x="166" y="196" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <interface corner="BOTTOM_RIGHT" language="java" name="org.isistan.flabot.launcher.persister.LogPersisterProvider" 
+    project="org.isistan.flabot.launcher" 
+    file="/org.isistan.flabot.launcher/src/org/isistan/flabot/launcher/persister/LogPersisterProvider.java" 
+    binary="false">    
+    <position x="166" y="55" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </interface>  
+  <realization>    
+    <source project="org.isistan.flabot.trace.cloud" 
+      name="org.isistan.flabot.trace.cloud.launcher.CloudLogPersisterProvider" 
+      file="/org.isistan.flabot.trace.cloud/src/org/isistan/flabot/trace/cloud/launcher/CloudLogPersisterProvider.java" 
+      binary="false"/>    
+    <target project="org.isistan.flabot.launcher" name="org.isistan.flabot.launcher.persister.LogPersisterProvider" 
+      file="/org.isistan.flabot.launcher/src/org/isistan/flabot/launcher/persister/LogPersisterProvider.java" 
+      binary="false"/>  
+  </realization>  
+  <classifier-display autosize="true" package="true" initial-value="false" signature="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

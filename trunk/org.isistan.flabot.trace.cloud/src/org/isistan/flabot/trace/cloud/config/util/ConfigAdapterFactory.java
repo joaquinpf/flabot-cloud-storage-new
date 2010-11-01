@@ -6,8 +6,6 @@
  */
 package org.isistan.flabot.trace.cloud.config.util;
 
-import config.*;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 
