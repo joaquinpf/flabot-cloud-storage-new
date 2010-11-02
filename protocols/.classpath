@@ -3,10 +3,10 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/jets3t-0.7.4.jar"/>
-	<classpathentry kind="lib" path="C:/Documents and Settings/Marcos/.m2/repository/org/apache/httpcomponents/httpclient/4.0-beta1/httpclient-4.0-beta1.jar"/>
-	<classpathentry kind="lib" path="C:/Documents and Settings/Marcos/.m2/repository/org/apache/httpcomponents/httpcore/4.0.1/httpcore-4.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Documents and Settings/Marcos/.m2/repository/oauth/signpost/signpost-core/1.2/signpost-core-1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Documents and Settings/Marcos/.m2/repository/com/googlecode/json-simple/json-simple/1.1/json-simple-1.1.jar"/>
 	<classpathentry kind="lib" path="dropbox-client-1.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/org.isistan.flabot.trace.cloud/lib/httpclient-4.0-beta1.jar"/>
+	<classpathentry kind="lib" path="/org.isistan.flabot.trace.cloud/lib/httpcore-4.0.1.jar"/>
+	<classpathentry kind="lib" path="/org.isistan.flabot.trace.cloud/lib/json-simple-1.1.jar"/>
+	<classpathentry kind="lib" path="/org.isistan.flabot.trace.cloud/lib/signpost-core-1.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
