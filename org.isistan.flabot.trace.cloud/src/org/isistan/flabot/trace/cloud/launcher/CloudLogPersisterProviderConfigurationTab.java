@@ -160,7 +160,7 @@ public class CloudLogPersisterProviderConfigurationTab extends AbstractConfigura
 
 	public void createControl(Composite parent) {
 		this.parent = parent;
-		parent.setSize(475, 253);
+		parent.setSize(475, 292);
 		Composite composite = new Composite(parent, SWT.NONE);
 		composite.setLayout(new GridLayout());
 
@@ -182,14 +182,14 @@ public class CloudLogPersisterProviderConfigurationTab extends AbstractConfigura
 		layout.numColumns = 2;
 		GridData groupLData = new GridData();
 		groupLData.horizontalAlignment = GridData.FILL;
-		groupLData.heightHint = 171;
+		groupLData.heightHint = 208;
 		groupLData.grabExcessHorizontalSpace = true;
 		group.setText("Cloud storage configuration");
 		group.setLayout(layout);
 		group.setLayoutData(groupLData);
 
 		Label labelOutputFileName = new Label(group, SWT.NULL);
-		labelOutputFileName.setText("Output File Name:");
+		labelOutputFileName.setText("File Name:");
 		outputFileName = new Text(group, SWT.BORDER);
 		GridData gd = new GridData();
 		gd.horizontalAlignment = GridData.FILL;
@@ -203,7 +203,7 @@ public class CloudLogPersisterProviderConfigurationTab extends AbstractConfigura
 			}
 		});
 		outputFileName.setEditable(true);
-		
+		/*
 		Label labelService = new Label(group, SWT.NULL);
 		labelService.setText("Service:");
 		service = new Text(group, SWT.BORDER);
@@ -216,7 +216,7 @@ public class CloudLogPersisterProviderConfigurationTab extends AbstractConfigura
 			}
 		});
 		service.setEditable(true);
-
+*/
 		Label labelPath = new Label(group, SWT.NULL);
 		labelPath.setText("Path:");
 		path = new Text(group, SWT.BORDER);
@@ -423,7 +423,7 @@ public class CloudLogPersisterProviderConfigurationTab extends AbstractConfigura
 		config.setAttribute(LaunchConfigurationConstants.FILENAME,
 				outputFileName.getText());
 		config.setAttribute(LaunchConfigurationConstants.SERVICE,
-				service.getText());
+				cloudDriver.getText());
 		config.setAttribute(LaunchConfigurationConstants.PATH,
 				path.getText());
 		config.setAttribute(LaunchConfigurationConstants.PASSWORD,
