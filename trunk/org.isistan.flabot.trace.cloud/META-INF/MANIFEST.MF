@@ -7,12 +7,29 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.isistan.flabot.trace.cloud,
- org.isistan.flabot.trace.cloud.launcher,
- org.isistan.flabot.trace.cloud.log,
- org.isistan.flabot.trace.cloud.config,
- org.isistan.flabot.trace.cloud.config.impl,
- org.isistan.flabot.trace.cloud.config.util
+Export-Package: org.isistan.flabot.trace.cloud;uses:="org.eclipse.ui.plugin,org.osgi.framework",
+ org.isistan.flabot.trace.cloud.config;uses:="org.eclipse.emf.ecore,org.isistan.flabot.trace.config",
+ org.isistan.flabot.trace.cloud.config.impl;
+  uses:="org.isistan.flabot.trace.log,
+   org.eclipse.emf.ecore,
+   org.isistan.flabot.trace.cloud.config,
+   org.isistan.flabot.trace.cloud.launcher.cloudProvider,
+   org.eclipse.emf.ecore.impl,
+   org.isistan.flabot.trace.config.impl",
+ org.isistan.flabot.trace.cloud.config.util;
+  uses:="org.eclipse.emf.ecore,
+   org.eclipse.emf.common.notify.impl,
+   org.isistan.flabot.trace.cloud.config,
+   org.eclipse.emf.common.notify,
+   org.isistan.flabot.trace.config",
+ org.isistan.flabot.trace.cloud.launcher;
+  uses:="org.isistan.flabot.launcher.tabs,
+   org.eclipse.debug.core,
+   org.eclipse.swt.graphics,
+   org.eclipse.swt.widgets,
+   org.isistan.flabot.trace.config,
+   org.isistan.flabot.launcher.persister",
+ org.isistan.flabot.trace.cloud.log;uses:="org.eclipse.emf.ecore.resource,org.isistan.flabot.trace.log"
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.isistan.flabot.trace,

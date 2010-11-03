@@ -25,7 +25,7 @@
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
        uri = "http:///org/isistan/flabot/trace/cloud/config.ecore" 
-       class = "org.isistan.flabot.trace.cloud.old.config.ConfigPackage"
+       class = "org.isistan.flabot.trace.cloud.config.ConfigPackage"
        genModel = "src/org/isistan/flabot/trace/cloud/tracefile.genmodel" /> 
   </extension>
   <extension
