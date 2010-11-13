@@ -45,14 +45,6 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.emf.common.util.URI;
 
-import com.flabot.remotestorage.auth.authenticator.Authenticator;
-import com.flabot.remotestorage.auth.constants.AuthenticationConstants;
-import com.flabot.remotestorage.auth.data.AmazonAuthenticationData;
-import com.flabot.remotestorage.auth.data.AuthenticationData;
-import com.flabot.remotestorage.auth.data.DropboxAuthenticationData;
-import com.flabot.remotestorage.factory.StorageServiceFactory;
-import com.flabot.remotestorage.storageservice.StorageService;
-import com.flabot.remotestorage.storageservice.StorageServiceData;
 
 /**
  * <!-- begin-user-doc -->
@@ -270,6 +262,7 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 	 */
 	public void setService(String newService) {
 		String oldService = service;
+		System.out.println("oldService: " + oldService + " newService: " + newService);
 		service = newService;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ConfigPackage.CLOUD_LOG_PERSISTER__SERVICE, oldService, service));

@@ -5,31 +5,24 @@ import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
-import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.isistan.flabot.launcher.LauncherPlugin;
 import org.isistan.flabot.launcher.tabs.AbstractConfigurationTab;
-import org.isistan.flabot.trace.cloud.launcher.cloudProvider.CloudProviderLoader;
 import org.isistan.flabot.trace.cloud.ExtensionPointConstants;
-import org.isistan.flabot.trace.cloud.launcher.LaunchConfigurationConstants;
+import org.isistan.flabot.trace.cloud.launcher.cloudProvider.CloudProviderLoader;
 
 
 
@@ -379,6 +372,7 @@ public class CloudLogPersisterProviderConfigurationTab extends AbstractConfigura
 
 		}
 		
+		cloudDriver.select(0);
 		
 		/*
 		String outputFile = config.getAttribute(
@@ -492,9 +486,9 @@ public class CloudLogPersisterProviderConfigurationTab extends AbstractConfigura
 	 * @return
 	 */
 	private IStatus validateServiceSelection() {
-		String username_ = username.getText();
-		if (username_.trim().length() == 0) {
-			return createStatus(IStatus.ERROR, "Username not selected.");
+		String service_ = service.getText();
+		if (service_.trim().length() == 0) {
+			return createStatus(IStatus.ERROR, "Service not selected.");
 		}
 
 		return createStatus(IStatus.OK, ""); //$NON-NLS-1$
@@ -506,9 +500,9 @@ public class CloudLogPersisterProviderConfigurationTab extends AbstractConfigura
 	 * @return
 	 */
 	private IStatus validatePathSelection() {
-		String username_ = username.getText();
-		if (username_.trim().length() == 0) {
-			return createStatus(IStatus.ERROR, "Username not selected.");
+		String path_ = path.getText();
+		if (path_.trim().length() == 0) {
+			return createStatus(IStatus.ERROR, "Path not selected.");
 		}
 
 		return createStatus(IStatus.OK, ""); //$NON-NLS-1$
@@ -520,9 +514,9 @@ public class CloudLogPersisterProviderConfigurationTab extends AbstractConfigura
 	 * @return
 	 */
 	private IStatus validateKeySelection() {
-		String username_ = username.getText();
-		if (username_.trim().length() == 0) {
-			return createStatus(IStatus.ERROR, "Username not selected.");
+		String key_ = key.getText();
+		if (key_.trim().length() == 0) {
+			return createStatus(IStatus.ERROR, "Key not selected.");
 		}
 
 		return createStatus(IStatus.OK, ""); //$NON-NLS-1$
@@ -534,9 +528,9 @@ public class CloudLogPersisterProviderConfigurationTab extends AbstractConfigura
 	 * @return
 	 */
 	private IStatus validateSecretSelection() {
-		String username_ = username.getText();
-		if (username_.trim().length() == 0) {
-			return createStatus(IStatus.ERROR, "Username not selected.");
+		String secret_ = secret.getText();
+		if (secret_.trim().length() == 0) {
+			return createStatus(IStatus.ERROR, "Secret not selected.");
 		}
 
 		return createStatus(IStatus.OK, ""); //$NON-NLS-1$

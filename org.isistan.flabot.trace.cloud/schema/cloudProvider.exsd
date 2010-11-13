@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.isistan.flabot.launcher" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.isistan.flabot.launcher">
 <annotation>
       <appInfo>
          <meta.schema plugin="org.isistan.flabot.launcher" id="cloudProvider" name="Flabot Trace Cloud Provider"/>
@@ -72,7 +72,7 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn="org.isistan.flabot.trace.cloud.launcher.cloudProvider.CloudProvider:"/>
+                  <meta.attribute kind="java" basedOn="org.isistan.flabot.cloud.launcher.cloudProvider"/>
                </appInfo>
             </annotation>
          </attribute>
