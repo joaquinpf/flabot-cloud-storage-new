@@ -40,7 +40,7 @@ public class CloudLogPersisterProvider implements LogPersisterProvider {
 		
 		String key = launchConfiguration.getAttribute(
 				LaunchConfigurationConstants.KEY, "");
-		if (filename == null || filename.trim().length() == 0) {
+		if (key == null || key.trim().length() == 0) {
 			throw new CoreException(new Status(IStatus.ERROR,
 					LauncherPlugin.SYMBOLIC_NAME, IStatus.ERROR,
 					"Key not selected.", null));
@@ -48,7 +48,7 @@ public class CloudLogPersisterProvider implements LogPersisterProvider {
 		
 		String password = launchConfiguration.getAttribute(
 				LaunchConfigurationConstants.PASSWORD, "");
-		if (filename == null || filename.trim().length() == 0) {
+		if (password == null || password.trim().length() == 0) {
 			throw new CoreException(new Status(IStatus.ERROR,
 					LauncherPlugin.SYMBOLIC_NAME, IStatus.ERROR,
 					"Password not selected.", null));
@@ -56,7 +56,7 @@ public class CloudLogPersisterProvider implements LogPersisterProvider {
 		
 		String path = launchConfiguration.getAttribute(
 				LaunchConfigurationConstants.PATH, "");
-		if (filename == null || filename.trim().length() == 0) {
+		if (path == null || path.trim().length() == 0) {
 			throw new CoreException(new Status(IStatus.ERROR,
 					LauncherPlugin.SYMBOLIC_NAME, IStatus.ERROR,
 					"Path not selected.", null));
@@ -64,7 +64,7 @@ public class CloudLogPersisterProvider implements LogPersisterProvider {
 		
 		String secret = launchConfiguration.getAttribute(
 				LaunchConfigurationConstants.SECRET, "");
-		if (filename == null || filename.trim().length() == 0) {
+		if (secret == null || secret.trim().length() == 0) {
 			throw new CoreException(new Status(IStatus.ERROR,
 					LauncherPlugin.SYMBOLIC_NAME, IStatus.ERROR,
 					"Secret not selected.", null));
@@ -72,7 +72,7 @@ public class CloudLogPersisterProvider implements LogPersisterProvider {
 		
 		String service = launchConfiguration.getAttribute(
 				LaunchConfigurationConstants.SERVICE, "");
-		if (filename == null || filename.trim().length() == 0) {
+		if (service == null || service.trim().length() == 0) {
 			throw new CoreException(new Status(IStatus.ERROR,
 					LauncherPlugin.SYMBOLIC_NAME, IStatus.ERROR,
 					"Service not selected.", null));
@@ -80,7 +80,7 @@ public class CloudLogPersisterProvider implements LogPersisterProvider {
 		
 		String username = launchConfiguration.getAttribute(
 				LaunchConfigurationConstants.USERNAME, "");
-		if (filename == null || filename.trim().length() == 0) {
+		if (username == null || username.trim().length() == 0) {
 			throw new CoreException(new Status(IStatus.ERROR,
 					LauncherPlugin.SYMBOLIC_NAME, IStatus.ERROR,
 					"Username not selected.", null));
