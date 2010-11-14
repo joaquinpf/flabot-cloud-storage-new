@@ -535,7 +535,11 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 		if (resource == null) {
 			System.out.println("getKey" +getKey() +"getSecret" +getSecret() +"getFileName" + getFileName()+"LOCAL_FILE_NAME" + LOCAL_FILE_NAME);
 			System.out.println("cloudProvider"+ cloudProvider);
-			cloudProvider.load(getKey(), getSecret(), getFileName(), getPath(), LOCAL_FILE_NAME);
+			try {
+				getCloudProvider().load(getKey(), getSecret(), getFileName(), getPath(), LOCAL_FILE_NAME);
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+			}
 			
 			if (cleared) {
 				URI uri = URI.createFileURI(LOCAL_FILE_NAME);
@@ -568,12 +572,14 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 		try {
 			resource.save(Collections.EMPTY_MAP);
 
-			cloudProvider.save(getKey(), getSecret(), getFileName(), getPath(), LOCAL_FILE_NAME);
+			getCloudProvider().save(getKey(), getSecret(), getFileName(), getPath(), LOCAL_FILE_NAME);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Error commiting log changes to file.",
 					e);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
