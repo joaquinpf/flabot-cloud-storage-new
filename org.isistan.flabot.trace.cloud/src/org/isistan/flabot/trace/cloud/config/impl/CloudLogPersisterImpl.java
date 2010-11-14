@@ -533,7 +533,8 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 
 	private Resource getResource(boolean cleared) {
 		if (resource == null) {
-
+			System.out.println("getKey" +getKey() +"getSecret" +getSecret() +"getFileName" + getFileName()+"LOCAL_FILE_NAME" + LOCAL_FILE_NAME);
+			System.out.println("cloudProvider"+ cloudProvider);
 			cloudProvider.load(getKey(), getSecret(), getFileName(), getPath(), LOCAL_FILE_NAME);
 			
 			if (cleared) {
@@ -640,7 +641,7 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 	 */
 	public CloudProvider getCloudProvider(String cloudProviderId)
 			throws CoreException {
-
+System.out.println("cloudProviderId"+cloudProviderId);
 		if (cloudProviderId.trim().length() == 0) {
 			throw new CoreException(new Status(IStatus.ERROR,
 					TraceCloudPlugin.SYMBOLIC_NAME, IStatus.ERROR,
