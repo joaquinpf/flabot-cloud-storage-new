@@ -45,6 +45,7 @@ public class CloudProviderLoader {
 		for (IExtension extension : extensions) {
 			IConfigurationElement[] extensionCollectionAction = getCloudProviderConfigurationElements(extension);
 			for (IConfigurationElement cloudProvider : extensionCollectionAction) {
+				System.out.println("Agregando cloud provider: " + cloudProvider.getName() + " cloudprovider: " + cloudProvider);
 				cloudProviders.add(cloudProvider);
 			}
 		}
@@ -72,6 +73,7 @@ public class CloudProviderLoader {
 			ClassNotFoundException {
 		IConfigurationElement cloudProvider = getCloudProviderConfigurationElement(cloudProviderId);
 		if (cloudProvider == null) {
+			System.out.println("cloudProviderId not found: " + cloudProviderId);
 			throw new IllegalArgumentException("cloudProviderId not found");
 		}
 
