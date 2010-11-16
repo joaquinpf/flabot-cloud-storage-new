@@ -6,6 +6,7 @@
  */
 package org.isistan.flabot.trace.cloud.config;
 
+import org.isistan.flabot.trace.cloud.launcher.cloudProvider.CloudProvider;
 import org.isistan.flabot.trace.config.LogPersister;
 
 /**
@@ -216,4 +217,6 @@ public interface CloudLogPersister extends LogPersister {
 	 */
 	void setSecret(String value);
 
+	void setCloudProvider(CloudProvider cloudProvider);
+	
 } // CloudLogPersister

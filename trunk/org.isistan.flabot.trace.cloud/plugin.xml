@@ -29,18 +29,20 @@
        genModel = "src/org/isistan/flabot/trace/cloud/tracefile.genmodel" /> 
   </extension>
   <extension
+        name="Flabot Trace Cloud Cloudprovider"
         point="org.isistan.flabot.trace.cloud.cloudProvider">
      <provider
            class="org.isistan.flabot.trace.cloud.launcher.cloudProvider.S3CloudProvider"
-           id="S3CloudProvider"
+           id="Flabot S3 Cloud Provider"
            name="Flabot S3 Cloud Provider">
      </provider>
   </extension>
   <extension
+        name="Flabot Trace Cloud Cloudprovider"
         point="org.isistan.flabot.trace.cloud.cloudProvider">
      <provider
            class="org.isistan.flabot.trace.cloud.launcher.cloudProvider.DropboxCloudProvider"
-           id="DropboxCloudProvider"
+           id="Flabot Dropbox Cloud Provider"
            name="Flabot Dropbox Cloud Provider">
      </provider>
   </extension>

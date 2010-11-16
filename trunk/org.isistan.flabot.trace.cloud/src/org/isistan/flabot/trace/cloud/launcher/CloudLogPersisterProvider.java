@@ -96,8 +96,46 @@ public class CloudLogPersisterProvider implements LogPersisterProvider {
 		cloudLogPersister.setSecret(secret);
 		cloudLogPersister.setService(service);
 		cloudLogPersister.setUsername(username);
+		cloudLogPersister.setCloudProvider(getCloudProvider(service));
 
 		return cloudLogPersister;
 	}
-	
+
+	public CloudProvider getCloudProvider(String cloudProviderId)
+	throws CoreException {
+		System.out.println("cloudProviderId"+cloudProviderId);
+		if (cloudProviderId.trim().length() == 0) {
+			throw new CoreException(new Status(IStatus.ERROR,
+					TraceCloudPlugin.SYMBOLIC_NAME, IStatus.ERROR,
+					"Cloud provider not selected.", null));
+		}
+		try {
+			return CloudProviderLoader.loadCloudProvider(cloudProviderId);
+		} catch (ClassNotFoundException e) {
+			throw new CoreException(new Status(IStatus.ERROR,
+					TraceCloudPlugin.SYMBOLIC_NAME, IStatus.ERROR,
+					"Cloud provider class not found.", e));
+		} catch (IllegalArgumentException e) {
+			throw new CoreException(new Status(IStatus.ERROR,
+					TraceCloudPlugin.SYMBOLIC_NAME, IStatus.ERROR,
+					"Invalid arguments on cloud provider.", e));
+		} catch (NoMatchingConstructorFoundException e) {
+			throw new CoreException(new Status(IStatus.ERROR,
+					TraceCloudPlugin.SYMBOLIC_NAME, IStatus.ERROR,
+					"No default constructor found in cloud provider.", e));
+		} catch (InstantiationException e) {
+			throw new CoreException(new Status(IStatus.ERROR,
+					TraceCloudPlugin.SYMBOLIC_NAME, IStatus.ERROR,
+					"Error instantiating cloud provider class.", e));
+		} catch (IllegalAccessException e) {
+			throw new CoreException(new Status(IStatus.ERROR,
+					TraceCloudPlugin.SYMBOLIC_NAME, IStatus.ERROR,
+					"Error accessing cloud provider constuctors.", e));
+		} catch (InvocationTargetException e) {
+			throw new CoreException(new Status(IStatus.ERROR,
+					TraceCloudPlugin.SYMBOLIC_NAME, IStatus.ERROR,
+					"Error creating cloud provider instance.", e));
+		}
+	}
+
 }
