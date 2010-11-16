@@ -628,9 +628,9 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 	private CloudProvider cloudProvider = null;
 	
 	public CloudProvider getCloudProvider() throws CoreException {
-		if(cloudProvider == null) {
+		/*if(cloudProvider == null) {
 			this.setCloudProvider(this.getCloudProvider(this.getService()));
-		}
+		}*/
 		return cloudProvider;
 	}
 

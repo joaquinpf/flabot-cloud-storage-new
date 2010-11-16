@@ -35,14 +35,6 @@ public class CloudProviderLoader {
 	public static IConfigurationElement[] getAllCloudProviderConfigurationElements() {
 
 		List<IConfigurationElement> cloudProviders = new LinkedList<IConfigurationElement>();
-		System.out.println("Registry: " + Platform.getExtensionRegistry());
-		
-		
-		System.out.println("Registry: " + Platform.getExtensionRegistry().getExtensionPoint("org.isistan.flabot.launcher"));
-		System.out.println("Registry: " + Platform.getExtensionRegistry().getExtensionPoint("cloudProvider"));
-		System.out.println("Registry: " + Platform.getExtensionRegistry().getExtensionPoint("org.isistan.flabot.launcher.cloudProvider"));
-		System.out.println("Registry: " + Platform.getExtensionRegistry().getExtensionPoint("org.isistan.flabot.trace.cloud.cloudProvider"));
-		
 		IExtensionPoint logPersiterProviderExtensionPoint = Platform
 				.getExtensionRegistry().getExtensionPoint(
 						ExtensionPointConstants.CLOUD_PROVIDER);
