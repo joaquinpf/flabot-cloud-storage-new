@@ -169,6 +169,14 @@ public class CloudLogPersisterProviderConfigurationTab extends AbstractConfigura
 		cloudDriver = new Combo(CloudProviderSelection, SWT.NULL);
 		GridData cloudDriverLData = new GridData(GridData.FILL_HORIZONTAL);
 		cloudDriver.setLayoutData(cloudDriverLData);
+		cloudDriver.addModifyListener(new ModifyListener() {
+			public void modifyText(ModifyEvent e) {
+				serviceSelectionStatus = validateServiceSelection();
+				if (!blockChanges)
+					updateStatus();
+			}
+		});
+
 		
 		Group group = new Group(composite, SWT.NONE);
 		GridLayout layout = new GridLayout();
@@ -486,7 +494,7 @@ public class CloudLogPersisterProviderConfigurationTab extends AbstractConfigura
 	 * @return
 	 */
 	private IStatus validateServiceSelection() {
-		String service_ = service.getText();
+		String service_ = cloudDriver.getText();
 		if (service_.trim().length() == 0) {
 			return createStatus(IStatus.ERROR, "Service not selected.");
 		}
