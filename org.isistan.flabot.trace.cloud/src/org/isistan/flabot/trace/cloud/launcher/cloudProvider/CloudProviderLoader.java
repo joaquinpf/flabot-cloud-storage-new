@@ -25,6 +25,7 @@ public class CloudProviderLoader {
 				.getConfigurationElements()) {
 			if (cloudProvider.getName().equals(
 					ExtensionPointConstants.CLOUD_PROVIDER__PROVIDER_TAG)) {
+				System.out.println("Cargando cloudprovider: " + cloudProvider.toString() + " nombre: " + cloudProvider.getName());
 				cloudProviders.add(cloudProvider);
 			}
 		}
@@ -35,6 +36,12 @@ public class CloudProviderLoader {
 	public static IConfigurationElement[] getAllCloudProviderConfigurationElements() {
 
 		List<IConfigurationElement> cloudProviders = new LinkedList<IConfigurationElement>();
+		System.out.println("Platform.getExtensionRegistry(): " + Platform.getExtensionRegistry());
+		System.out.println("ExtensionPointConstants.CLOUD_PROVIDER: " + ExtensionPointConstants.CLOUD_PROVIDER);
+		
+		System.out.println("Platform.getExtensionRegistry().getExtensionPoint(ExtensionPointConstants.CLOUD_PROVIDER): "
+				+ Platform.getExtensionRegistry().getExtensionPoint(ExtensionPointConstants.CLOUD_PROVIDER));
+		
 		IExtensionPoint logPersiterProviderExtensionPoint = Platform
 				.getExtensionRegistry().getExtensionPoint(
 						ExtensionPointConstants.CLOUD_PROVIDER);
