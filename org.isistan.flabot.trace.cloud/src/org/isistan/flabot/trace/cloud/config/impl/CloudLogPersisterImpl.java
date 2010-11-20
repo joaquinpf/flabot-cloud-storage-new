@@ -213,7 +213,6 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 	 */
 	protected CloudLogPersisterImpl() {
 		super();
-		System.out.println("Cloud.CloudLogPersisterImpl.CloudLogPersisterImpl");
 	}
 
 	/**
@@ -223,7 +222,6 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		System.out.println("Cloud.CloudLogPersisterImpl.CloudLogPersisterImpl");
 		return ConfigPackage.Literals.CLOUD_LOG_PERSISTER;
 	}
 
@@ -233,7 +231,6 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 	 * @generated
 	 */
 	public String getFileName() {
-		System.out.println("Cloud.CloudLogPersisterImpl.getFileName");
 		return fileName;
 	}
 
@@ -243,7 +240,6 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 	 * @generated
 	 */
 	public void setFileName(String newFileName) {
-		System.out.println("Cloud.CloudLogPersisterImpl.setFileName");
 		String oldFileName = fileName;
 		fileName = newFileName;
 		if (eNotificationRequired())
@@ -256,7 +252,6 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 	 * @generated
 	 */
 	public String getService() {
-		System.out.println("Cloud.CloudLogPersisterImpl.getService");
 		return service;
 	}
 
@@ -266,7 +261,6 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 	 * @generated
 	 */
 	public void setService(String newService) {
-		System.out.println("Cloud.CloudLogPersisterImpl.setService");
 		String oldService = service;
 		System.out.println("oldService: " + oldService + " newService: " + newService);
 		service = newService;
@@ -280,7 +274,6 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 	 * @generated
 	 */
 	public String getPath() {
-		System.out.println("Cloud.CloudLogPersisterImpl.getPath");
 		return path;
 	}
 
@@ -290,7 +283,6 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 	 * @generated
 	 */
 	public void setPath(String newPath) {
-		System.out.println("Cloud.CloudLogPersisterImpl.setPath");
 		String oldPath = path;
 		path = newPath;
 		if (eNotificationRequired())
@@ -303,7 +295,6 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 	 * @generated
 	 */
 	public String getPassword() {
-		System.out.println("Cloud.CloudLogPersisterImpl.getPassword");
 		return password;
 	}
 
@@ -389,7 +380,6 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		System.out.println("Cloud.CloudLogPersisterImpl.eGet");
 		switch (featureID) {
 			case ConfigPackage.CLOUD_LOG_PERSISTER__FILE_NAME:
 				return getFileName();
@@ -416,7 +406,6 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		System.out.println("Cloud.CloudLogPersisterImpl.eSet");
 		switch (featureID) {
 			case ConfigPackage.CLOUD_LOG_PERSISTER__FILE_NAME:
 				setFileName((String)newValue);
@@ -450,7 +439,6 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		System.out.println("Cloud.CloudLogPersisterImpl.eUnset");
 		switch (featureID) {
 			case ConfigPackage.CLOUD_LOG_PERSISTER__FILE_NAME:
 				setFileName(FILE_NAME_EDEFAULT);
@@ -484,7 +472,6 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		System.out.println("Cloud.CloudLogPersisterImpl.eIsSet");
 		switch (featureID) {
 			case ConfigPackage.CLOUD_LOG_PERSISTER__FILE_NAME:
 				return FILE_NAME_EDEFAULT == null ? fileName != null : !FILE_NAME_EDEFAULT.equals(fileName);
@@ -511,7 +498,6 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 	 */
 	@Override
 	public String toString() {
-		System.out.println("Cloud.CloudLogPersisterImpl.toString");
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -534,7 +520,6 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 	}
 
 	public void clear() {
-		System.out.println("Cloud.CloudLogPersisterImpl.clear");
 		if (resource == null) {
 			getResource(true);
 		} else {
@@ -547,10 +532,10 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 	private final String LOCAL_FILE_NAME = "./temp.xmi";
 
 	private Resource getResource(boolean cleared) {
-		System.out.println("Cloud.CloudLogPersisterImpl.getResource");
 		if (resource == null) {
 			System.out.println("getKey" +getKey() +"getSecret" +getSecret() +"getFileName" + getFileName()+"LOCAL_FILE_NAME" + LOCAL_FILE_NAME);
 			System.out.println("cloudProvider"+ cloudProvider);
+						
 			try {
 				getCloudProvider().load(getKey(), getSecret(), getFileName(), getPath(), LOCAL_FILE_NAME);
 			} catch (Exception e) {
@@ -582,7 +567,6 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 	}
 
 	public void save() {
-		System.out.println("Cloud.CloudLogPersisterImpl.CloudLogPersisterImpl");
 		if (resource == null) {
 			return;
 		}
@@ -604,7 +588,6 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 	}
 
 	public TraceLog[] loadTraceLogs() {
-		System.out.println("Cloud.CloudLogPersisterImpl.CloudLogPersisterImpl");
 		Resource resource = getResource(false);
 		List<?> traceLogList = resource.getContents();
 		TraceLog[] traceLogs = traceLogList.toArray(new TraceLog[traceLogList
@@ -623,7 +606,6 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 	private TraceLogFactory factory;
 
 	public TraceLogFactory getTraceLogFactory() {
-		System.out.println("Cloud.CloudLogPersisterImpl.CloudLogPersisterImpl");
 		if (factory == null) {
 			factory = new CloudTraceLogFactory(getResource(false));
 		}
@@ -631,7 +613,6 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 	}
 
 	public long getSize() {
-		System.out.println("Cloud.CloudLogPersisterImpl.CloudLogPersisterImpl");
 		if (resource == null) {
 			return 0;
 		} else {
@@ -648,61 +629,22 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 	private CloudProvider cloudProvider = null;
 	
 	public CloudProvider getCloudProvider() throws CoreException {
-		System.out.println("Cloud.CloudLogPersisterImpl.CloudLogPersisterImpl");
-		/*if(cloudProvider == null) {
-			this.setCloudProvider(this.getCloudProvider(this.getService()));
-		}*/
+		
+
+		if(cloudProvider == null) {
+			try {
+				CloudProvider prov = (CloudProvider) Class.forName(this.getService()).newInstance();
+				this.setCloudProvider(prov);
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+			}	
+		}
+		
 		return cloudProvider;
 	}
 
 	public void setCloudProvider(CloudProvider cloudProvider) {
-		System.out.println("Cloud.CloudLogPersisterImpl.CloudLogPersisterImpl");
 		this.cloudProvider = cloudProvider;
 	}
 	
-	/**
-	 * Loads the configured CloudProvider
-	 * 
-	 * @param cloudProviderId
-	 * @return
-	 * @throws CoreException
-	 */
-	public CloudProvider getCloudProvider(String cloudProviderId)
-			throws CoreException {
-		System.out.println("Cloud.CloudLogPersisterImpl.CloudLogPersisterImpl");
-		System.out.println("cloudProviderId"+cloudProviderId);
-		if (cloudProviderId.trim().length() == 0) {
-			throw new CoreException(new Status(IStatus.ERROR,
-					TraceCloudPlugin.SYMBOLIC_NAME, IStatus.ERROR,
-					"Cloud provider not selected.", null));
-		}
-		try {
-			return CloudProviderLoader.loadCloudProvider(cloudProviderId);
-		} catch (ClassNotFoundException e) {
-			throw new CoreException(new Status(IStatus.ERROR,
-					TraceCloudPlugin.SYMBOLIC_NAME, IStatus.ERROR,
-					"Cloud provider class not found.", e));
-		} catch (IllegalArgumentException e) {
-			throw new CoreException(new Status(IStatus.ERROR,
-					TraceCloudPlugin.SYMBOLIC_NAME, IStatus.ERROR,
-					"Invalid arguments on cloud provider.", e));
-		} catch (NoMatchingConstructorFoundException e) {
-			throw new CoreException(new Status(IStatus.ERROR,
-					TraceCloudPlugin.SYMBOLIC_NAME, IStatus.ERROR,
-					"No default constructor found in cloud provider.", e));
-		} catch (InstantiationException e) {
-			throw new CoreException(new Status(IStatus.ERROR,
-					TraceCloudPlugin.SYMBOLIC_NAME, IStatus.ERROR,
-					"Error instantiating cloud provider class.", e));
-		} catch (IllegalAccessException e) {
-			throw new CoreException(new Status(IStatus.ERROR,
-					TraceCloudPlugin.SYMBOLIC_NAME, IStatus.ERROR,
-					"Error accessing cloud provider constuctors.", e));
-		} catch (InvocationTargetException e) {
-			throw new CoreException(new Status(IStatus.ERROR,
-					TraceCloudPlugin.SYMBOLIC_NAME, IStatus.ERROR,
-					"Error creating cloud provider instance.", e));
-		}
-	}
-
 } 
