@@ -1,12 +1,12 @@
 package org.isistan.flabot.trace.cloud.launcher.cloudProvider;
 
-import com.flabot.remotestorage.auth.authenticator.Authenticator;
-import com.flabot.remotestorage.auth.constants.AuthenticationConstants;
-import com.flabot.remotestorage.auth.data.AmazonAuthenticationData;
-import com.flabot.remotestorage.factory.StorageServiceFactory;
-import com.flabot.remotestorage.storageservice.StorageService;
-import com.flabot.remotestorage.storageservice.StorageServiceData;
-import com.flabot.remotestorage.storageservice.constants.StorageServiceConstants;
+import org.isistan.flabot.remotestorage.auth.authenticator.Authenticator;
+import org.isistan.flabot.remotestorage.auth.constants.AuthenticationConstants;
+import org.isistan.flabot.remotestorage.auth.data.AmazonAuthenticationData;
+import org.isistan.flabot.remotestorage.factory.StorageServiceFactory;
+import org.isistan.flabot.remotestorage.storageservice.StorageService;
+import org.isistan.flabot.remotestorage.storageservice.StorageServiceData;
+import org.isistan.flabot.remotestorage.storageservice.constants.StorageServiceConstants;
 
 public class S3CloudProvider implements CloudProvider {
 

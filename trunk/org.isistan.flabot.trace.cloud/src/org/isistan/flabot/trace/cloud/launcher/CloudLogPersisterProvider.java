@@ -94,10 +94,11 @@ public class CloudLogPersisterProvider implements LogPersisterProvider {
 		cloudLogPersister.setPassword(password);
 		cloudLogPersister.setPath(path);
 		cloudLogPersister.setSecret(secret);
-		cloudLogPersister.setService(service);
 		cloudLogPersister.setUsername(username);
-		cloudLogPersister.setCloudProvider(getCloudProvider(service));
-
+		
+		CloudProvider provider = getCloudProvider(service);
+		cloudLogPersister.setService(provider.getClass().getCanonicalName());
+		
 		return cloudLogPersister;
 	}
 
