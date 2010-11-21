@@ -119,10 +119,10 @@ public class S3StorageService extends StorageService implements AmazonAuthentica
 
 
 	private String sanitizeAmazonPath(String path) {
-		if (!path.endsWith("/"))
-			path = path + "/";
 		if (path.startsWith("/"))
 			path = path.substring(1);
+		if (!path.endsWith("/"))
+			path = path + "/";
 		
 		return path;
 	}

@@ -20,6 +20,8 @@ import org.isistan.flabot.trace.cloud.launcher.cloudProvider.CloudProvider;
 import org.isistan.flabot.trace.cloud.launcher.cloudProvider.CloudProviderLoader;
 import org.isistan.flabot.trace.config.LogPersister;
 import org.isistan.flabot.util.extension.NoMatchingConstructorFoundException;
+import org.jets3t.service.S3ServiceException;
+import org.jets3t.service.impl.rest.httpclient.RestS3Service;
 
 /**
  * EMF log persister provider.
@@ -95,6 +97,14 @@ public class CloudLogPersisterProvider implements LogPersisterProvider {
 		cloudLogPersister.setPath(path);
 		cloudLogPersister.setSecret(secret);
 		cloudLogPersister.setUsername(username);
+		
+		try {
+			RestS3Service ser = new RestS3Service(null);
+			ser.checkBucketStatus(null);
+		} catch (S3ServiceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		CloudProvider provider = getCloudProvider(service);
 		cloudLogPersister.setService(provider.getClass().getCanonicalName());
