@@ -37,6 +37,8 @@ import org.isistan.flabot.trace.log.LogPackage;
 import org.isistan.flabot.trace.log.TraceLog;
 import org.isistan.flabot.trace.log.TraceLogFactory;
 import org.isistan.flabot.util.extension.NoMatchingConstructorFoundException;
+import org.jets3t.service.S3ServiceException;
+import org.jets3t.service.impl.rest.httpclient.RestS3Service;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -535,11 +537,12 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 		if (resource == null) {
 			System.out.println("getKey" +getKey() +"getSecret" +getSecret() +"getFileName" + getFileName()+"LOCAL_FILE_NAME" + LOCAL_FILE_NAME);
 			System.out.println("cloudProvider"+ cloudProvider);
-						
+			
 			try {
 				getCloudProvider().load(getKey(), getSecret(), getFileName(), getPath(), LOCAL_FILE_NAME);
 			} catch (Exception e) {
-				throw new RuntimeException(e);
+				cleared = true;
+				//throw new RuntimeException(e);
 			}
 			
 			if (cleared) {

@@ -1,17 +1,17 @@
 package org.isistan.flabot.trace.cloud.launcher.cloudProvider;
 
-import org.isistan.flabot.remotestorage.auth.authenticator.Authenticator;
-import org.isistan.flabot.remotestorage.auth.constants.AuthenticationConstants;
-import org.isistan.flabot.remotestorage.auth.data.AmazonAuthenticationData;
-import org.isistan.flabot.remotestorage.factory.StorageServiceFactory;
-import org.isistan.flabot.remotestorage.storageservice.StorageService;
-import org.isistan.flabot.remotestorage.storageservice.StorageServiceData;
-import org.isistan.flabot.remotestorage.storageservice.constants.StorageServiceConstants;
+import com.flabot.remotestorage.auth.authenticator.Authenticator;
+import com.flabot.remotestorage.auth.constants.AuthenticationConstants;
+import com.flabot.remotestorage.auth.data.AmazonAuthenticationData;
+import com.flabot.remotestorage.factory.StorageServiceFactory;
+import com.flabot.remotestorage.storageservice.StorageService;
+import com.flabot.remotestorage.storageservice.StorageServiceData;
+import com.flabot.remotestorage.storageservice.constants.StorageServiceConstants;
 
 public class S3CloudProvider implements CloudProvider {
 
 	@Override
-	public void load(String key, String secret, String filename, String path, String localFilename) {
+	public void load(String key, String secret, String filename, String path, String localFilename) throws Exception {
 		try{
 			AmazonAuthenticationData authData = new AmazonAuthenticationData();
 			authData.setAccessKey(key);
@@ -19,7 +19,7 @@ public class S3CloudProvider implements CloudProvider {
 			StorageServiceData storageData = new StorageServiceData();
 			storageData.setFileName(filename);
 			int barra = path.indexOf("/");
-			storageData.setHost(path.substring(0, barra - 1));
+			storageData.setHost(path.substring(0, barra));
 			storageData.setPath(path.substring(barra));
 			storageData.setAuthData(authData);
 			StorageService service = StorageServiceFactory.instance.getStorageService(StorageServiceConstants.S3_STORAGE_SERVICE);
@@ -28,12 +28,12 @@ public class S3CloudProvider implements CloudProvider {
 			service.download(localFilename, storageData);
 			service.disconnect();		
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+			throw e;
 		}
 	}
 
 	@Override
-	public void save(String key, String secret, String filename, String path, String localFilename) {
+	public void save(String key, String secret, String filename, String path, String localFilename) throws Exception {
 		try{
 			AmazonAuthenticationData authData = new AmazonAuthenticationData();
 			authData.setAccessKey(key);
@@ -41,7 +41,7 @@ public class S3CloudProvider implements CloudProvider {
 			StorageServiceData storageData = new StorageServiceData();
 			storageData.setFileName(filename);
 			int barra = path.indexOf("/");
-			storageData.setHost(path.substring(0, barra - 1));
+			storageData.setHost(path.substring(0, barra));
 			storageData.setPath(path.substring(barra));
 			storageData.setAuthData(authData);
 			StorageService service = StorageServiceFactory.instance.getStorageService(StorageServiceConstants.S3_STORAGE_SERVICE);
@@ -50,7 +50,7 @@ public class S3CloudProvider implements CloudProvider {
 			service.upload(localFilename, storageData);
 			service.disconnect();		
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+			throw e;
 		}
 	}
 
