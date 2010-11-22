@@ -1,8 +1,10 @@
 package org.isistan.flabot.trace.cloud.launcher.cloudProvider;
 
+import java.util.Map;
+
 public interface CloudProvider {
 
-	public void save(String key, String secret, String filename, String path, String localFilename) throws Exception;
-	public void load(String key, String secret, String filename, String path, String localFilename) throws Exception;
+	public void save(Map<String,String> properties) throws Exception;
+	public void load(Map<String,String> properties) throws Exception;
 	
 }

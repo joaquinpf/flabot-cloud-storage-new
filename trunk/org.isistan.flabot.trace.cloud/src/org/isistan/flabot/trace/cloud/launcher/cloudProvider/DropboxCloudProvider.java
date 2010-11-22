@@ -1,5 +1,7 @@
 package org.isistan.flabot.trace.cloud.launcher.cloudProvider;
 
+import java.util.Map;
+
 import com.flabot.remotestorage.auth.authenticator.Authenticator;
 import com.flabot.remotestorage.auth.constants.AuthenticationConstants;
 import com.flabot.remotestorage.auth.data.DropboxAuthenticationData;
@@ -11,8 +13,16 @@ import com.flabot.remotestorage.storageservice.constants.StorageServiceConstants
 public class DropboxCloudProvider implements CloudProvider {
 
 	@Override
-	public void load(String key, String secret, String filename, String path, String localFilename) throws Exception {
+	public void load(Map<String,String> properties) throws Exception {
 		try{
+			String key = properties.get(CloudProviderPropertiesConstants.KEY);
+			String secret = properties.get(CloudProviderPropertiesConstants.SECRET);
+			String path = properties.get(CloudProviderPropertiesConstants.PATH);
+			String filename = properties.get(CloudProviderPropertiesConstants.FILE_NAME);
+			String localFilename = properties.get(CloudProviderPropertiesConstants.LOCAL_FILE_NAME);
+			String username = properties.get(CloudProviderPropertiesConstants.USER_NAME);
+			String password = properties.get(CloudProviderPropertiesConstants.PASSWORD);
+			
 			DropboxAuthenticationData authData = new DropboxAuthenticationData();
 			StorageServiceData storageData = new StorageServiceData();
 			storageData.setFileName(filename);
@@ -31,8 +41,17 @@ public class DropboxCloudProvider implements CloudProvider {
 	}
 
 	@Override
-	public void save(String key, String secret, String filename, String path, String localFilename) throws Exception {
+	public void save(Map<String,String> properties) throws Exception {
 		try{
+			String key = properties.get(CloudProviderPropertiesConstants.KEY);
+			String secret = properties.get(CloudProviderPropertiesConstants.SECRET);
+			String path = properties.get(CloudProviderPropertiesConstants.PATH);
+			String filename = properties.get(CloudProviderPropertiesConstants.FILE_NAME);
+			String localFilename = properties.get(CloudProviderPropertiesConstants.LOCAL_FILE_NAME);
+			String username = properties.get(CloudProviderPropertiesConstants.USER_NAME);
+			String password = properties.get(CloudProviderPropertiesConstants.PASSWORD);
+			
+			
 			DropboxAuthenticationData authData = new DropboxAuthenticationData();
 			StorageServiceData storageData = new StorageServiceData();
 			storageData.setFileName(filename);
