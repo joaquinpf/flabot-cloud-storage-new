@@ -12,7 +12,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 import org.eclipse.core.runtime.CoreException;
@@ -31,6 +33,7 @@ import org.isistan.flabot.trace.cloud.config.ConfigPackage;
 import org.isistan.flabot.trace.cloud.launcher.LaunchConfigurationConstants;
 import org.isistan.flabot.trace.cloud.launcher.cloudProvider.CloudProvider;
 import org.isistan.flabot.trace.cloud.launcher.cloudProvider.CloudProviderLoader;
+import org.isistan.flabot.trace.cloud.launcher.cloudProvider.CloudProviderPropertiesConstants;
 import org.isistan.flabot.trace.cloud.log.CloudTraceLogFactory;
 import org.isistan.flabot.trace.config.impl.LogPersisterImpl;
 import org.isistan.flabot.trace.log.LogPackage;
@@ -530,6 +533,27 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 	}
 
 	private Resource resource;
+	private Map<String,String> propertiesMap; 
+	
+	private void setPropertiesMap(Map<String,String> propertiesMap){
+		this.propertiesMap = propertiesMap;
+	}
+	
+	private Map<String,String> getPropertiesMap(){
+		if(propertiesMap == null) {
+			Map<String,String> properties = new HashMap<String, String>();
+			properties.put(CloudProviderPropertiesConstants.FILE_NAME, getFileName());
+			properties.put(CloudProviderPropertiesConstants.KEY, getKey());
+			properties.put(CloudProviderPropertiesConstants.LOCAL_FILE_NAME, LOCAL_FILE_NAME);
+			properties.put(CloudProviderPropertiesConstants.PASSWORD, getPassword());
+			properties.put(CloudProviderPropertiesConstants.PATH, getPath());
+			properties.put(CloudProviderPropertiesConstants.SECRET, getSecret());
+			properties.put(CloudProviderPropertiesConstants.USER_NAME, getUsername());
+			setPropertiesMap(properties);
+		}
+		
+		return this.propertiesMap;
+	}
 	
 	private final String LOCAL_FILE_NAME = "./temp.xmi";
 
@@ -537,9 +561,9 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 		if (resource == null) {
 			System.out.println("getKey" +getKey() +"getSecret" +getSecret() +"getFileName" + getFileName()+"LOCAL_FILE_NAME" + LOCAL_FILE_NAME);
 			System.out.println("cloudProvider"+ cloudProvider);
-			
+						
 			try {
-				getCloudProvider().load(getKey(), getSecret(), getFileName(), getPath(), LOCAL_FILE_NAME);
+				getCloudProvider().load(getPropertiesMap());
 			} catch (Exception e) {
 				cleared = true;
 				//throw new RuntimeException(e);
@@ -576,7 +600,7 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 		try {
 			resource.save(Collections.EMPTY_MAP);
 
-			getCloudProvider().save(getKey(), getSecret(), getFileName(), getPath(), LOCAL_FILE_NAME);
+			getCloudProvider().save(getPropertiesMap());
 			
 		} catch (IOException e) {
 			e.printStackTrace();
