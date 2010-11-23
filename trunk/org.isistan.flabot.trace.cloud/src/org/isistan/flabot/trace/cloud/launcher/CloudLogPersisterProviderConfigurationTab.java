@@ -51,10 +51,6 @@ public class CloudLogPersisterProviderConfigurationTab extends AbstractConfigura
 	 */
 	private Text outputFileName;
 	/**
-	 * Text for the service
-	 */
-	private Text service;
-	/**
 	 * Text for the path
 	 */
 	private Text path;

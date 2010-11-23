@@ -1,7 +1,11 @@
 package com.flabot.remotestorage.storageservice;
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Map;
@@ -23,6 +27,9 @@ import com.dropbox.client.DropboxClient;
 import com.dropbox.client.TrustedAuthenticator;
 import org.apache.http.HttpResponse;
 import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.log4j.FileAppender;
+import org.eclipse.debug.core.sourcelookup.containers.LocalFileStorage;
+
 import oauth.signpost.exception.OAuthCommunicationException;
 import oauth.signpost.exception.OAuthException;
 
@@ -49,7 +56,7 @@ public class DropboxStorageService extends StorageService implements DropboxAuth
 	public void download(String localPathFile, StorageServiceData data) throws DownloadException {
 		data.setPath(getRealPath(data.getPath()));
 		try {
-			HttpResponse resp = client.getFile("", "directory/" + data.getFileName());
+			HttpResponse resp = client.getFile("", "directory/" + data.getPath() + "/" + data.getFileName());
 			if (resp.getStatusLine().getStatusCode() != 200) {
 				System.out.println("Ocurrio un error al recibir el archivo desde el repositorio." 
 						+ resp.getStatusLine().getReasonPhrase() + " : " 
@@ -84,7 +91,8 @@ public class DropboxStorageService extends StorageService implements DropboxAuth
 	public void upload(String localPathFile, StorageServiceData data) throws UploadException {
 		data.setPath(getRealPath(data.getPath()));
 		try {
-			HttpResponse resp = client.putFile("", "directory",new File(localPathFile));
+			copyfile(localPathFile, data.getFileName());
+			HttpResponse resp = client.putFile("", "directory/" + data.getPath(),new File(data.getFileName()));
 			if (resp.getStatusLine().getStatusCode() != 200) {
 				System.out.println("Ocurrio un error mientras se enviaba el archivo al repositorio." 
 						+ resp.getStatusLine().getReasonPhrase() + " : " 
@@ -112,12 +120,11 @@ public class DropboxStorageService extends StorageService implements DropboxAuth
 	public void dropboxAuthentication(DropboxAuthenticationData authData)
 			throws AuthenticationException {
 		try {
-			ProtocolsProperties props = authData.getProperties();
-			TrustedAuthenticator auth = new TrustedAuthenticator(props);
-			if (auth.retrieveTrustedAccessToken(props.getProperty("dropbox.username"), 
-					props.getProperty("dropbox.password")))
+			TrustedAuthenticator auth = new TrustedAuthenticator(authData.getProperties());
+			if (auth.retrieveTrustedAccessToken(authData.getUsername(), 
+					authData.getPassword()))
 			{
-				this.client = new DropboxClient(props,auth);
+				this.client = new DropboxClient(authData.getProperties(),auth);
 			}
 		} catch (Exception e) {
 			throw new AuthenticationException(e.getMessage());
@@ -125,4 +132,30 @@ public class DropboxStorageService extends StorageService implements DropboxAuth
 		
 	}
 	
+	private static void copyfile(String srFile, String dtFile){
+	    try{
+	      File f1 = new File(srFile);
+	      File f2 = new File(dtFile);
+	      InputStream in = new FileInputStream(f1);
+	      
+	      //For Overwrite the file.
+	      OutputStream out = new FileOutputStream(f2);
+
+	      byte[] buf = new byte[1024];
+	      int len;
+	      while ((len = in.read(buf)) > 0){
+	        out.write(buf, 0, len);
+	      }
+	      in.close();
+	      out.close();
+	      System.out.println("File copied.");
+	    }
+	    catch(FileNotFoundException ex){
+	      System.out.println(ex.getMessage() + " in the specified directory.");
+	      System.exit(0);
+	    }
+	    catch(IOException e){
+	      System.out.println(e.getMessage());      
+	    }
+	  }
 }
