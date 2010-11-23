@@ -46,6 +46,7 @@ import org.jets3t.service.impl.rest.httpclient.RestS3Service;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.emf.common.util.URI;
@@ -580,7 +581,11 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 			} else {
 				resource = new XMIResourceImpl(URI.createFileURI(LOCAL_FILE_NAME));
 				try {
-					resource.load(Collections.emptyMap());
+					Map<String, Object> options = new HashMap<String, Object>();
+					options.put(XMIResource.OPTION_ZIP, Boolean.TRUE);
+					resource.load(options);
+					
+					//resource.load(Collections.emptyMap());
 				} catch (IOException e) {
 					throw new RuntimeException(e);
 				}
@@ -594,7 +599,12 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 			return;
 		}
 		try {
-			resource.save(Collections.EMPTY_MAP);
+			
+			Map<String, Object> options = new HashMap<String, Object>();
+			options.put(XMIResource.OPTION_ZIP, Boolean.TRUE);
+			resource.save(options);
+			
+			//resource.save(Collections.EMPTY_MAP);
 
 			getCloudProvider().save(getPropertiesMap());
 			

@@ -32,10 +32,21 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </interface>  
+  <class corner="BOTTOM_RIGHT" language="java" 
+    name="org.isistan.flabot.trace.cloud.launcher.cloudProvider.CloudProviderPropertiesConstants" 
+    project="org.isistan.flabot.trace.cloud" 
+    file="/org.isistan.flabot.trace.cloud/src/org/isistan/flabot/trace/cloud/launcher/cloudProvider/CloudProviderPropertiesConstants.java" 
+    binary="false">    
+    <position x="268" y="409" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
   <realization>    
     <source project="org.isistan.flabot.trace.cloud" 
-      name="org.isistan.flabot.trace.cloud.launcher.cloudProvider.DropboxCloudProvider" 
-      file="/org.isistan.flabot.trace.cloud/src/org/isistan/flabot/trace/cloud/launcher/cloudProvider/DropboxCloudProvider.java" 
+      name="org.isistan.flabot.trace.cloud.launcher.cloudProvider.S3CloudProvider" 
+      file="/org.isistan.flabot.trace.cloud/src/org/isistan/flabot/trace/cloud/launcher/cloudProvider/S3CloudProvider.java" 
       binary="false"/>    
     <target project="org.isistan.flabot.trace.cloud" 
       name="org.isistan.flabot.trace.cloud.launcher.cloudProvider.CloudProvider" 
@@ -44,8 +55,8 @@
   </realization>  
   <realization>    
     <source project="org.isistan.flabot.trace.cloud" 
-      name="org.isistan.flabot.trace.cloud.launcher.cloudProvider.S3CloudProvider" 
-      file="/org.isistan.flabot.trace.cloud/src/org/isistan/flabot/trace/cloud/launcher/cloudProvider/S3CloudProvider.java" 
+      name="org.isistan.flabot.trace.cloud.launcher.cloudProvider.DropboxCloudProvider" 
+      file="/org.isistan.flabot.trace.cloud/src/org/isistan/flabot/trace/cloud/launcher/cloudProvider/DropboxCloudProvider.java" 
       binary="false"/>    
     <target project="org.isistan.flabot.trace.cloud" 
       name="org.isistan.flabot.trace.cloud.launcher.cloudProvider.CloudProvider" 
