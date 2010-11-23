@@ -267,7 +267,6 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 	 */
 	public void setService(String newService) {
 		String oldService = service;
-		System.out.println("oldService: " + oldService + " newService: " + newService);
 		service = newService;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ConfigPackage.CLOUD_LOG_PERSISTER__SERVICE, oldService, service));
@@ -559,9 +558,6 @@ public class CloudLogPersisterImpl extends LogPersisterImpl implements CloudLogP
 
 	private Resource getResource(boolean cleared) {
 		if (resource == null) {
-			System.out.println("getKey" +getKey() +"getSecret" +getSecret() +"getFileName" + getFileName()+"LOCAL_FILE_NAME" + LOCAL_FILE_NAME);
-			System.out.println("cloudProvider"+ cloudProvider);
-						
 			try {
 				getCloudProvider().load(getPropertiesMap());
 			} catch (Exception e) {

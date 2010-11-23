@@ -24,12 +24,15 @@ public class DropboxCloudProvider implements CloudProvider {
 			String password = properties.get(CloudProviderPropertiesConstants.PASSWORD);
 			
 			DropboxAuthenticationData authData = new DropboxAuthenticationData();
+			authData.setConsumer_key(key);
+			authData.setConsumer_secret(secret);
+			authData.setUsername(username);
+			authData.setPassword(password);
+
 			StorageServiceData storageData = new StorageServiceData();
 			storageData.setFileName(filename);
-			int barra = path.indexOf("/");
-			storageData.setHost(path.substring(0, barra - 1));
-			storageData.setPath(path.substring(barra));
 			storageData.setAuthData(authData);
+			storageData.setPath(path);
 			StorageService service = StorageServiceFactory.instance.getStorageService(StorageServiceConstants.DROPBOX_STORAGE_SERVICE);
 			Authenticator authenticator = StorageServiceFactory.instance.getAuthenticator(AuthenticationConstants.DROPBOX_AUTHENTICATION);
 			service.connect(storageData, authenticator);
@@ -53,12 +56,14 @@ public class DropboxCloudProvider implements CloudProvider {
 			
 			
 			DropboxAuthenticationData authData = new DropboxAuthenticationData();
+			authData.setConsumer_key(key);
+			authData.setConsumer_secret(secret);
+			authData.setUsername(username);
+			authData.setPassword(password);
 			StorageServiceData storageData = new StorageServiceData();
 			storageData.setFileName(filename);
-			int barra = path.indexOf("/");
-			storageData.setHost(path.substring(0, barra - 1));
-			storageData.setPath(path.substring(barra));
 			storageData.setAuthData(authData);
+			storageData.setPath(path);
 			StorageService service = StorageServiceFactory.instance.getStorageService(StorageServiceConstants.DROPBOX_STORAGE_SERVICE);
 			Authenticator authenticator = StorageServiceFactory.instance.getAuthenticator(AuthenticationConstants.DROPBOX_AUTHENTICATION);
 			service.connect(storageData, authenticator);
