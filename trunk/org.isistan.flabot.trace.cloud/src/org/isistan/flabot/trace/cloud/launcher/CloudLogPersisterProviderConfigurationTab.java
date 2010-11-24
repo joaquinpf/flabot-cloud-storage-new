@@ -200,20 +200,6 @@ public class CloudLogPersisterProviderConfigurationTab extends AbstractConfigura
 			}
 		});
 		outputFileName.setEditable(true);
-		/*
-		Label labelService = new Label(group, SWT.NULL);
-		labelService.setText("Service:");
-		service = new Text(group, SWT.BORDER);
-		service.setLayoutData(gd);
-		service.addModifyListener(new ModifyListener() {
-			public void modifyText(ModifyEvent e) {
-				serviceSelectionStatus = validateServiceSelection();
-				if (!blockChanges)
-					updateStatus();
-			}
-		});
-		service.setEditable(true);
-*/
 		Label labelPath = new Label(group, SWT.NULL);
 		labelPath.setText("Path:");
 		path = new Text(group, SWT.BORDER);
@@ -375,13 +361,6 @@ public class CloudLogPersisterProviderConfigurationTab extends AbstractConfigura
 			cloudDriver.select(selection);
 
 		}
-		
-		cloudDriver.select(0);
-		
-		/*
-		String outputFile = config.getAttribute(
-				LaunchConfigurationConstants.FILENAME, "");
-		outputFileText.setText(outputFile);*/
 	}
 	
 	public void setDefaults(ILaunchConfigurationWorkingCopy config) {
